@@ -13,6 +13,7 @@ namespace ClairG.TableTennisStore.WebApp
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            IocConfig.Register();
         }
     }
 }
