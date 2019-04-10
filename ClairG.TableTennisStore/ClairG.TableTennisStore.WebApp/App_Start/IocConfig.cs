@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using ClairG.TableTennisStore.Domain.Abstract;
+using ClairG.TableTennisStore.Domain.Concrete;
 using ClairG.TableTennisStore.Domain.Entities;
 using Moq;
 using System;
@@ -16,27 +17,19 @@ namespace ClairG.TableTennisStore.WebApp
         public static void Register()
         {
             var builder = new ContainerBuilder();
-
-            builder.RegisterControllers(AppDomain.CurrentDomain.GetAssemblies()).PropertiesAutowired();
-
-            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
-            mock
-                .Setup(m => m.Products)
-                .Returns(new List<Product>
-                {
-                    new Product { Name = "Shoes", Price = 70 },
-                    new Product { Name = "Shirts", Price = 65 },
-                    new Product { Name = "Table", Price = 2300 }
-                });
+            // Register your MVC controllers. (MvcApplication is the name of
+            // the class in Global.asax.)
             builder
-                .RegisterInstance<IProductsRepository>(mock.Object)
+                .RegisterControllers(AppDomain.CurrentDomain.GetAssemblies())
                 .PropertiesAutowired();
-
+            builder
+                .RegisterType<EFProductRepository>()
+                .As<IProductsRepository>()
+                .PropertiesAutowired();
+            // Set the dependency resolver to be Autofac.
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
-
-            //最后在Global里注册
+            //register in global.asax
         }
     }
 }
