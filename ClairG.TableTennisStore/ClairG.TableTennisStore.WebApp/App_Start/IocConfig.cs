@@ -23,6 +23,9 @@ namespace ClairG.TableTennisStore.WebApp
                 .RegisterControllers(AppDomain.CurrentDomain.GetAssemblies())
                 .PropertiesAutowired();
             builder
+                .RegisterType<EFDbContext>()
+                .PropertiesAutowired();
+            builder
                 .RegisterType<EFProductRepository>()
                 .As<IProductsRepository>()
                 .PropertiesAutowired();

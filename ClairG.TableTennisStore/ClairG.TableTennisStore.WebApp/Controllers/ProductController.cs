@@ -18,30 +18,35 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
             this.repository = productsRepository;
         }
 
-        public ViewResult List(int page = 1)
-        {
-            ProductsListViewModel model = new ProductsListViewModel()
-            {
-                Products = repository
-                .Products
-                .OrderBy(p => p.ProductID)
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize),
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = repository.Products.Count()
-                }
-            };
-            return View(model);
-        }
-
         // GET: Product
         public ActionResult Index()
         {
             return View();
         }
 
+        public ViewResult List(string category, int page = 1)
+        {
+            var categoryProducts = repository
+                .Products
+                .Where(p => category == null || p.Category == category);
+            ProductsListViewModel model = new ProductsListViewModel
+            {
+                Products = categoryProducts                
+                .OrderBy(p => p.ProductID)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize),
+
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = categoryProducts.Count()
+                },
+
+                CurrentCategory = category
+            };
+
+            return View(model);
+        }
     }
 }
