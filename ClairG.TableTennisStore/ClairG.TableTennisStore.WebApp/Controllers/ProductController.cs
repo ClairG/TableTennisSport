@@ -11,7 +11,7 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
     public class ProductController : Controller
     {
         private IProductsRepository repository;
-        public int PageSize = 3;
+        public int PageSize = 4;
 
         public ProductController(IProductsRepository productsRepository)
         {
