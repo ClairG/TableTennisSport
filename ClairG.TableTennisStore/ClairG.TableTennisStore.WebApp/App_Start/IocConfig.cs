@@ -3,6 +3,8 @@ using Autofac.Integration.Mvc;
 using ClairG.TableTennisStore.Domain.Abstract;
 using ClairG.TableTennisStore.Domain.Concrete;
 using ClairG.TableTennisStore.Domain.Entities;
+using ClairG.TableTennisStore.WebApp.Infrastructure;
+using ClairG.TableTennisStore.WebApp.Infrastructure.Concrete;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,10 @@ namespace ClairG.TableTennisStore.WebApp
                 .PropertiesAutowired();
             builder
                 .RegisterType<EmailSettings>()
+                .PropertiesAutowired();
+            builder
+                .RegisterType<DbAuthProvider>()
+                .As<IAuthProvider>()
                 .PropertiesAutowired();
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();

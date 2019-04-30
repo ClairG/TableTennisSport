@@ -11,5 +11,6 @@ namespace ClairG.TableTennisStore.Domain.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<LoginUser> loginUsers { get; set; }
     }
 }

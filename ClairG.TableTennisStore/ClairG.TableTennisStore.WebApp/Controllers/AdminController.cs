@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ClairG.TableTennisStore.WebApp.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductsRepository repository;
