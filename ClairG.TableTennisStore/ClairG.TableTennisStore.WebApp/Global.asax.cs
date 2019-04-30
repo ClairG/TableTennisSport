@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClairG.TableTennisStore.Domain.Entities;
+using ClairG.TableTennisStore.WebApp.Infrastructure.Binders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +16,7 @@ namespace ClairG.TableTennisStore.WebApp
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             IocConfig.Register();
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
     }
 }

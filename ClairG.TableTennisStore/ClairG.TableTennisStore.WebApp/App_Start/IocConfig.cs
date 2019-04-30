@@ -29,6 +29,13 @@ namespace ClairG.TableTennisStore.WebApp
                 .RegisterType<EFProductRepository>()
                 .As<IProductsRepository>()
                 .PropertiesAutowired();
+            builder
+                .RegisterType<EmailOrderProcessor>()
+                .As<IOrderProcessor>()
+                .PropertiesAutowired();
+            builder
+                .RegisterType<EmailSettings>()
+                .PropertiesAutowired();
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
