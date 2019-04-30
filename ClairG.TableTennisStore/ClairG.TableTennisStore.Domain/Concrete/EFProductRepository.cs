@@ -15,5 +15,40 @@ namespace ClairG.TableTennisStore.Domain.Concrete
         {
             get { return context.Products; }
         }
+
+
+        public Product DeleteProduct(int productId) //delete
+        {
+            Product dbEntry = context.Products.Find(productId);
+            if (dbEntry != null)
+            {
+                context.Products.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
+        public void SaveProduct(Product product) 
+        {
+            if (product.ProductId == 0) //add new
+            {
+                context.Products.Add(product);
+            }
+            else
+            {
+                Product dbEntry = context.Products.Find(product.ProductId); //edit
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = product.Name; 
+                    dbEntry.Description = product.Description;
+                    dbEntry.Price = product.Price;
+                    dbEntry.Category = product.Category;
+                    dbEntry.ImageData = product.ImageData;
+                    dbEntry.ImageMimeType = product.ImageMimeType;
+                }
+            }
+
+            context.SaveChanges();
+        }
     }
 }

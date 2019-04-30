@@ -12,7 +12,7 @@ namespace ClairG.TableTennisStore.Domain.Entities
         public void AddItem(Product product, int quantity)
         {
             CartLine line = lineCollection
-            .Where(p => p.Product.ProductID == product.ProductID)
+            .Where(p => p.Product.ProductId == product.ProductId)
             .FirstOrDefault();
             if (line == null)
             {
@@ -29,7 +29,7 @@ namespace ClairG.TableTennisStore.Domain.Entities
         }
         public void RemoveLine(Product product)
         {
-            lineCollection.RemoveAll(l => l.Product.ProductID == product.ProductID);
+            lineCollection.RemoveAll(l => l.Product.ProductId == product.ProductId);
         }
         public decimal ComputeTotalValue()
         {

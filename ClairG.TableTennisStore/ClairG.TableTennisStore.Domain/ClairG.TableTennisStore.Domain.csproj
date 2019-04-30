@@ -85,12 +85,28 @@
     <Compile Include="Entities\CartLine.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
+    <Compile Include="Migrations\201904101919445_InitialCreate.cs" />
+    <Compile Include="Migrations\201904101919445_InitialCreate.Designer.cs">
+      <DependentUpon>201904101919445_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904301518493_ModifyProduct.cs" />
+    <Compile Include="Migrations\201904301518493_ModifyProduct.Designer.cs">
+      <DependentUpon>201904301518493_ModifyProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904101919445_InitialCreate.resx">
+      <DependentUpon>201904101919445_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904301518493_ModifyProduct.resx">
+      <DependentUpon>201904301518493_ModifyProduct.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

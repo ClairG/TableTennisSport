@@ -1,4 +1,5 @@
 ﻿using ClairG.TableTennisStore.Domain.Abstract;
+using ClairG.TableTennisStore.Domain.Entities;
 using ClairG.TableTennisStore.WebApp.Models;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
             ProductsListViewModel model = new ProductsListViewModel
             {
                 Products = categoryProducts                
-                .OrderBy(p => p.ProductID)
+                .OrderBy(p => p.ProductId)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -47,6 +48,21 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
             };
 
             return View(model);
+        }
+
+        public FileContentResult GetImage(int productId)
+        {
+            Product prod = repository
+            .Products
+            .FirstOrDefault(p => p.ProductId == productId);
+            if (prod != null)
+            {
+                return File(prod.ImageData, prod.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

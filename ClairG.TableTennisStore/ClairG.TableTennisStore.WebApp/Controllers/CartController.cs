@@ -38,7 +38,7 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
         public RedirectToRouteResult AddToCart(Cart cart, int productId, string returnUrl)
         {
             Product product = repository.Products
-            .FirstOrDefault(p => p.ProductID == productId);
+            .FirstOrDefault(p => p.ProductId == productId);
             if (product != null)
             {
                 cart.AddItem(product, 1);
@@ -49,7 +49,7 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
         public RedirectToRouteResult RemoveFromCart(Cart cart, int productId, string returnUrl)
         {
             Product product = repository.Products
-            .FirstOrDefault(p => p.ProductID == productId);
+            .FirstOrDefault(p => p.ProductId == productId);
             if (product != null)
             {
                 cart.RemoveLine(product);
