@@ -14,7 +14,7 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
         {
             repository = repo;
         }
-        public PartialViewResult Menu(string category = null)
+        public PartialViewResult Menu(string category = null, bool horizontalLayout = false)
         {
             ViewBag.SelectedCategory = category;
             IEnumerable<string> categories = repository
@@ -22,7 +22,8 @@ namespace ClairG.TableTennisStore.WebApp.Controllers
             .Select(x => x.Category)
             .Distinct()
             .OrderBy(x => x);
-            return PartialView(categories);
+
+            return PartialView("FlexMenu", categories);
         }
     }
 }
